@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Plant Disease Detection</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #f1f8e9;
+        color: #2e7d32;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        height: 100vh;
+        background-image: url("static/home.jpg");
+        background-repeat: no-repeat;
+        background-size: cover;
+      }
+
+      nav {
+        background: linear-gradient(90deg, #388e3c, #2e7d32);
+        color: white;
+        padding: 15px;
+        width: 100%;
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+      }
+
+      nav .container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .logo {
+        font-size: 28px;
+        font-weight: bold;
+        letter-spacing: 1px;
+      }
+
+      .nav-links {
+        list-style: none;
+        display: flex;
+        gap: 20px;
+        margin: 0;
+        align-items: center;
+      }
+
+      .nav-links li {
+        position: relative;
+      }
+
+      .nav-links a {
+        color: white;
+        text-decoration: none;
+        padding: 10px 20px;
+        padding-left: 30px;
+        transition: background-color 0.3s ease;
+      }
+
+      .nav-links a:hover {
+        background-color: rgba(255, 255, 255, 0.2);
+        border-radius: 5px;
+      }
+
+      .nav-links li:hover ul {
+        display: block;
+      }
+
+      .nav-links ul {
+        display: none;
+        position: absolute;
+        top: 40px;
+        left: 0;
+        background-color: #388e3c;
+        padding: 10px;
+        border-radius: 5px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+        list-style: none;
+        min-width: 150px;
+        z-index: 1001;
+      }
+
+      .nav-links ul li {
+        padding: 10px 20px;
+      }
+
+      .nav-links ul li a {
+        padding: 0;
+      }
+
+      h1 {
+        color: #000000;
+        margin: 30px 0;
+        font-size: 32px;
+        text-align: center;
+        margin-top: 80px;
+      }
+
+      form {
+        background-color: rgba(255, 255, 255, 0.9);
+        padding: 25px 30px;
+
+        border-radius: 15px;
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+        width: 80%;
+        max-width: 500px;
+        text-align: center;
+      }
+
+      input[type="file"] {
+        width: 100%;
+        padding: 12px;
+        margin-bottom: 20px;
+        border: 2px solid #66bb6a;
+        border-radius: 5px;
+        box-sizing: border-box;
+        transition: border-color 0.3s ease;
+      }
+
+      input[type="file"]:focus {
+        border-color: #2e7d32;
+      }
+
+      button {
+        background-color: #2e7d32;
+        color: white;
+        padding: 12px 25px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        width: 100%;
+        font-size: 16px;
+        font-weight: bold;
+        transition: background-color 0.3s ease;
+      }
+
+      button:hover {
+        background-color: #1b5e20;
+      }
+
+      .uploaded-image {
+        margin-top: 20px;
+        max-width: 100%;
+        max-height: 400px;
+        border: 2px solid #66bb6a;
+        border-radius: 10px;
+        display: none;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      }
+
+      a {
+        margin-top: 20px;
+        color: #388e3c;
+        text-decoration: none;
+        font-size: 14px;
+      }
+
+      a:hover {
+        text-decoration: underline;
+      }
+
+      .circular-icon {
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+        object-fit: cover;
+        border: 3px solid #000;
+        position: fixed;
+        bottom: 40px;
+        right: 40px;
+        z-index: 1000;
+        transition: transform 0.3s ease;
+      }
+
+      .circular-icon:hover {
+        transform: scale(1.1);
+      }
+    </style>
+  </head>
+  <body>
+    <nav>
+      <div class="container">
+        <div class="logo">FARMSEVA</div>
+        <ul class="nav-links">
+          <li><a href="{{ url_for('home') }}" style="color: white">Home</a></li>
+        </ul>
+      </div>
+    </nav>
+
+    <h1>Upload an Image of a Plant Leaf</h1>
+
+    <form method="post" enctype="multipart/form-data">
+      <input type="file" name="file" id="fileInput" required />
+      <button type="submit">Submit</button>
+      <img id="preview" class="uploaded-image" alt="Selected Image" />
+    </form>
+
+    <a href="{{ url_for('chat') }}">
+      <img src="static/OIP (1).jpg" alt="Go to Chat" class="circular-icon" />
+    </a>
+
+    <script>
+      document
+        .getElementById("fileInput")
+        .addEventListener("change", function (event) {
+          const file = event.target.files[0];
+          const preview = document.getElementById("preview");
+          if (file) {
+            const reader = new FileReader();
+            reader.onload = function (e) {
+              preview.src = e.target.result;
+              preview.style.display = "block";
+            };
+            reader.readAsDataURL(file);
+          } else {
+            preview.src = "";
+            preview.style.display = "none";
+          }
+        });
+    </script>
+  </body>
+</html>

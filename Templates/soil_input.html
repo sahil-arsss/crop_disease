@@ -1,0 +1,164 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Prediction Result</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #e8f5e9;
+        color: #2e7d32;
+        margin: 0;
+        padding: 20px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+
+      h1 {
+        color: #1b5e20;
+        margin-bottom: 20px;
+      }
+
+      p {
+        background-color: #ffffff;
+        border: 1px solid #c8e6c9;
+        border-radius: 10px;
+        padding: 15px;
+        width: 100%;
+        max-width: 600px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        margin-bottom: 15px;
+        box-sizing: border-box;
+        white-space: pre-wrap;
+      }
+
+      p strong {
+        color: #388e3c;
+      }
+
+      a {
+        display: inline-block;
+        background-color: #2e7d32;
+        color: white;
+        padding: 10px 20px;
+        border-radius: 5px;
+        text-decoration: none;
+        margin: 5px;
+        transition: background-color 0.3s;
+      }
+
+      a:hover {
+        background-color: #1b5e20;
+      }
+
+      button {
+        margin-top: 10px;
+        padding: 10px 20px;
+        background-color: #1b5e20;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+      }
+
+      button:hover {
+        background-color: #259a25;
+      }
+      span {
+        font-size: 1.2rem;
+        margin-top: 18px;
+      }
+      .container {
+        width: 80%;
+        max-width: 1200px;
+        margin: auto;
+      }
+      nav {
+        background-color: #2e7d32;
+        color: white;
+        padding: 10px 0;
+        position: sticky;
+        top: 0;
+        width: 100%;
+        z-index: 1000;
+      }
+      nav .container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+      .logo {
+        font-size: 24px;
+        font-weight: bold;
+      }
+      .nav-links {
+        list-style: none;
+        display: flex;
+        gap: 20px;
+      }
+      .nav-links a {
+        color: white;
+        text-decoration: none;
+        padding: 8px 16px;
+        border-radius: 4px;
+        transition: background-color 0.3s;
+      }
+      .nav-links a:hover {
+        background-color: #1b5e20;
+      }
+    </style>
+  </head>
+  <body>
+    <nav>
+      <div class="container">
+        <div class="logo">FARMSEVA</div>
+        <ul class="nav-links">
+          <li><a href="{{ url_for('home') }}" style="color: white">Home</a></li>
+        </ul>
+      </div>
+    </nav>
+    <h1>Prediction Result</h1>
+    <p id="disease"><strong>Disease Name:</strong> {{ disease_name }}</p>
+    <p id="info"><strong>Information:</strong><br />{{ disease_info }}</p>
+    <button onclick="speakText()">Play Audio in Hindi</button>
+    <span>
+      <a href="{{ url_for('map_view') }}">View Location on Map</a>
+      <a href="{{ url_for('chat') }}">Go to Chat</a>
+      <a href="{{ url_for('upload_route') }}">Back to Upload</a>
+    </span>
+
+    <script>
+      function speakText() {
+        const diseaseName = document.getElementById("disease").innerText;
+        const diseaseInfo = document.getElementById("info").innerText;
+        const speechText = `${diseaseName}. ${diseaseInfo}`;
+
+        const speech = new SpeechSynthesisUtterance(speechText);
+        speech.lang = "hi-IN"; // Set language to Hindi (India)
+        speech.pitch = 1;
+        speech.rate = 1;
+
+        window.speechSynthesis.speak(speech);
+      }
+    </script>
+  </body>
+</html> -->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Prediction Result</title>
+  </head>
+  <body>
+    <form method="POST">
+        <input type="text" name="soil_data" placeholder="Enter soil data..." required>
+        <button type="submit">Get Soil Info</button>
+    </form>
+    
+  </body>
+</html>

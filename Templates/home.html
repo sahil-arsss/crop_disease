@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Farmseva</title>
+    <style>
+      body {
+        margin: 0;
+        font-family: Arial, sans-serif;
+        line-height: 1.6;
+        background-color: #f4f4f4;
+        color: #333;
+      }
+      .container {
+        width: 80%;
+        max-width: 1200px;
+        margin: auto; 
+      }
+      nav {
+        background-color: #2e7d32;
+        color: white;
+        padding: 10px 0;
+        position: sticky;
+        top: 0;
+        width: 100%;
+        z-index: 1000;
+      }
+      nav .container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+      .logo {
+        font-size: 24px;
+        font-weight: bold;
+      }
+      .nav-links {
+        list-style: none;
+        display: flex;
+        gap: 20px;
+      }
+      .nav-links a {
+        color: white;
+        text-decoration: none;
+        padding: 8px 16px;
+        border-radius: 4px;
+        transition: background-color 0.3s;
+      }
+      .nav-links a:hover {
+        background-color: #1b5e20;
+      }
+      /* Hero Section */
+      .hero {
+        background: url("static/Background image.jpg") no-repeat center
+          center/cover;
+        height: 100vh;
+        color: white;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+      }
+
+      .hero h1 {
+        font-size: 58px;
+        margin-top: 2px;
+        margin-bottom: 20px;
+        padding: 10px;
+        font-weight: 900;
+        color: #000000;
+        width: 100%;
+      }
+      .hero p {
+        font-size: 18px;
+
+        margin-bottom: 40px;
+        color: rgb(0, 0, 0);
+        font-size: 20px;
+        font-weight: 900;
+      }
+      .cta-button {
+        background-color: #2600ff;
+        color: white;
+        padding: 12px 24px;
+        text-decoration: none;
+        border-radius: 4px;
+        transition: background-color 0.3s;
+      }
+      .cta-button:hover {
+        background-color: #00ff0d;
+        color: #000000;
+      }
+      .about {
+        padding: 60px 0;
+        background-color: white;
+        color: #333;
+        text-align: center;
+      }
+      .about h2 {
+        font-size: 36px;
+        margin-bottom: 20px;
+      }
+      .about p {
+        font-size: 18px;
+        max-width: 800px;
+        margin: auto;
+      }
+      .services {
+        padding: 60px 0;
+        background-color: #e8f5e9;
+        color: #333;
+        text-align: center;
+      }
+      .services h2 {
+        font-size: 36px;
+        margin-bottom: 40px;
+      }
+      .service-items {
+        display: flex;
+        justify-content: space-around;
+        flex-wrap: wrap;
+      }
+      .service-item {
+        background-color: white;
+        border: 1px solid #c8e6c9;
+        border-radius: 10px;
+        padding: 20px;
+        width: 60%;
+        margin-bottom: 20px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      }
+      .service-item h3 {
+        font-size: 24px;
+        margin-bottom: 10px;
+      }
+      .service-item p {
+        font-size: 16px;
+      }
+      .contact {
+        padding: 60px 0;
+        background-color: white;
+        color: #333;
+        text-align: center;
+      }
+      .contact h2 {
+        font-size: 36px;
+        margin-bottom: 20px;
+      }
+      .contact-info {
+        list-style: none;
+        padding: 0;
+      }
+      .contact-info li {
+        font-size: 18px;
+        margin-bottom: 10px;
+      }
+      /* Footer */
+      footer {
+        background-color: #2e7d32;
+        color: white;
+        padding: 20px 0;
+        text-align: center;
+      }
+      footer p {
+        margin: 0;
+      }
+      .service-items a {
+        color: #388e3c;
+        background-color: transparent;
+        text-decoration: none;
+      }
+      a:visited {
+        color: #388e3c;
+        background-color: transparent;
+        text-decoration: none;
+      }
+      a:hover {
+        color: red;
+        background-color: transparent;
+      }
+    </style>
+  </head>
+  <body>
+    <nav>
+      <div class="container">
+        <div class="logo">FARMSEVA</div>
+        <ul class="nav-links">
+          <li><a href="{{ url_for('home') }}" style="color: white">Home</a></li>
+          <li><a href="#about" style="color: white">About</a></li>
+          <li><a href="#services" style="color: white">Services</a></li>
+          <li><a href="#contact" style="color: white">Contact</a></li>
+        </ul>
+      </div>
+    </nav>
+
+    <header class="hero" id="home">
+      <div class="hero-content">
+        <h1>Welcome TO FARMSEVA</h1>
+        <p>Transforming Agriculture, Empowering Farmers</p>
+        <a href="#services" class="cta-button" style="color: white"
+          >Learn More</a
+        >
+      </div>
+    </header>
+
+    <section class="about" id="about">
+      <div class="container">
+        <h2>About Us</h2>
+        <p>
+          Our website helps farmers and gardeners detect crop diseases quickly
+          and easily. Just upload a picture of your plant's leaf, and our system
+          will identify any diseases. You can also chat with our bot to get
+          advice on plant care, disease prevention, and more. We're here to
+          support you in keeping your crops healthy and thriving.
+        </p>
+      </div>
+    </section>
+
+    <section class="services" id="services">
+      <div class="container">
+        <h2>Our Services</h2>
+        <div class="service-items">
+          <div class="service-item">
+            <h3>Crop Disease Detection</h3>
+            <p>Know your crop disease</p>
+            <a href="{{ url_for('upload_file') }}"
+              >Go to Crop Disease Detection</a
+            >
+          </div>
+        <div class="service-items">
+          <div class="service-item">
+            <h3>Chat in Community</h3>
+            <p>Discuss about disease</p>
+            <a href="{{ url_for('chat_home') }}"
+              >Go for Chat </a
+            >
+          </div>
+          <div class="service-item">
+            <h3>Chat with Bot</h3>
+            <p>Discuss about the disease</p>
+            <a href="{{ url_for('chat') }}">Go to Chat</a>
+          </div>
+            <div class="service-item">
+              <h3>Crop Detection</h3>
+              <p>Know which Crop to Grow</p>
+              <a href="{{ url_for('crop_prediction') }}">Go for Prediction</a>
+            </div>
+          <div class="service-item">
+            <h3>Mapping</h3>
+            <p>Get prior notification about disease outbreak in your area</p>
+            <a href="{{ url_for('map_view') }}">Go to Mapping</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="contact" id="contact">
+      <div class="container"> 
+        <h2>Contact Us</h2>
+        <p>Get in touch with us through the following methods.</p>
+        <ul class="contact-info">
+          <li>Email: info@mywebsite.com</li>
+          <li>Phone: +123 456 7890</li>
+        </ul>
+      </div>
+    </section>
+
+    <footer>
+      <div class="container">
+        <p>&copy; 2024 FARMSEVA. All rights reserved.</p>
+      </div>
+    </footer>
+  </body>
+</html>

@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Azure Maps Static Map with Red Marker</title>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <style>
+      .container {
+        width: 80%;
+        max-width: 1200px;
+        margin: auto;
+      }
+      nav {
+        background-color: #2e7d32;
+        color: white;
+        padding: 10px 0;
+        position: sticky;
+        top: 0;
+        width: 100%;
+        z-index: 1000;
+      }
+      nav .container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+      .logo {
+        font-size: 24px;
+        font-weight: bold;
+      }
+      .nav-links {
+        list-style: none;
+        display: flex;
+        gap: 20px;
+      }
+      .nav-links a {
+        color: white;
+        text-decoration: none;
+        padding: 8px 16px;
+        border-radius: 4px;
+        transition: background-color 0.3s;
+      }
+      .nav-links a:hover {
+        background-color: #1b5e20;
+      }
+      body {
+        font-family: Arial, sans-serif;
+        text-align: center;
+        margin: 20px;
+      }
+      #map {
+        border: 1px solid #ccc;
+        width: 100%;
+        max-width: 800px;
+        height: 600px;
+      }
+    </style>
+  </head>
+  <body>
+    <nav>
+      <div class="container">
+        <div class="logo">FARMSEVA</div>
+        <ul class="nav-links">
+          <li><a href="{{ url_for('home') }}" style="color: white">Home</a></li>
+        </ul>
+      </div>
+    </nav>
+    <h1>Diseases near you--</h1>
+    <p>
+      Below is a static map centered on your current location with a red marker:
+    </p>
+    <img id="map" src="" alt="Static Map" />
+
+    <script type="text/javascript">
+      function updateMapUrl(latitude, longitude) {
+        var apiKey =
+          "46ctH1U30Patk24xhP41Kfl16C3Sskhg6am9eFRSuf7wzypBPPBuJQQJ99AHACYeBjFsolYcAAAgAZMPYTZS"; // Replace with your Azure Maps API key
+        var zoom = 15; // Increased zoom level
+        var size = "1000x800"; // Increased map size
+
+        // URL to a larger red marker image (adjust size as needed)
+        var redMarkerUrl = "https://your-larger-marker-image.png";
+
+        // Construct the URL for the Azure Maps Static API
+        var staticMapUrl = `https://atlas.microsoft.com/map/static/png?subscription-key=${apiKey}&api-version=1.0&center=${longitude},${latitude}&zoom=${zoom}&size=${size}&poi=poi:1|${longitude},${latitude}&poi-style=${redMarkerUrl}&style=main`;
+        document.getElementById("map").src = staticMapUrl;
+      }
+
+      // Attempt to get the user's location and update the map
+      navigator.geolocation.getCurrentPosition(
+        function (position) {
+          var latitude = position.coords.latitude;
+          var longitude = position.coords.longitude;
+          updateMapUrl(latitude, longitude);
+        },
+        function (error) {
+          console.error("Error getting user location:", error);
+          // Fallback to a default location
+          var fallbackLatitude = 28.6558;
+          var fallbackLongitude = 77.1328;
+          updateMapUrl(fallbackLatitude, fallbackLongitude);
+        }
+      );
+    </script>
+  </body>
+</html>
